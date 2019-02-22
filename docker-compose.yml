@@ -1,0 +1,44 @@
+version: '3.3'
+services:
+  favouriteservice-app:
+   image: favouriteservice-app
+   build: favouriteservice/
+   restart: always
+   network_mode: host
+   ports:
+     - 8083:8083
+   expose:
+     - 8083
+   depends_on:
+     - news-mysql
+  userservice-app:
+   image: userservice-app
+   build: userservice/
+   restart: always
+   network_mode: host
+   ports:
+     - 8082:8082
+   expose:
+     - 8082
+   depends_on:
+     - news-mysql
+
+  news-mysql:
+   image: mysql:5.5
+   network_mode: host
+   ports:
+     - "3306:3306"
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: news
+     MYSQL_USER: root
+     MYSQL_PASSWORD: root
+   volumes:
+     - /opt/news/mysqldb:/var/lib/mysql
+  angular:
+    image: angular-app
+    build: newsappUI/
+    network_mode: host
+    container_name: angular-docker
+    ports:
+      - 4200:4200

@@ -1,0 +1,23 @@
+.card{
+    margin: 0px;
+    padding: 0px 0px 0px 0px;
+    border: 30px;
+}
+
+.Search-bar-padding
+{
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.card-img-top
+{
+    min-height: 200px;
+}
+
+@media screen and  (min-width : 1224px)
+ {
+    .card{
+        max-width: 20rem;
+      }
+ }
